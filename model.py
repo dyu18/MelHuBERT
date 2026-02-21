@@ -145,10 +145,10 @@ class MelHuBERTModel(nn.Module):
         pre_feat = input_feat
         if self.pre_extract_proj != None:
             pre_feat = self.pre_extract_proj(input_feat)
-        
+
         # Masking after projection 
         if mask and not self.model_config.mask_before_proj:
-            x, mask_indices = self.apply_mask(pre_feat, ~pad_mask.bool(), teacher_mask_indices)
+            x, mask_indices = self.apply_mask(pre_feat, ~pad_mask.bool())
         else:
             x = pre_feat
             mask_indices = mask_indices
